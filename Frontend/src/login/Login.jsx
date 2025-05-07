@@ -216,7 +216,7 @@ const Login = () => {
         
         <form onSubmit={handleLogin}>
           <div className={styles.inputGroup}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Emails</label>
             <input
               id="email"
               type="email"
