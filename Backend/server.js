@@ -7,11 +7,23 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
 // Enable CORS for all routes
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://host-solo-parent.vercel.app'
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
-app.use(express.json({ limit: '50mb' }));
+(express.json({ limit: '50mb' }));
 app.use(bodyParser.json({ limit: '50mb' }));
 
 const { sendStatusEmail, sendRenewalStatusEmail, sendRevokeEmail, sendTerminationEmail, sendReverificationEmail } = require('./services/emailService');
