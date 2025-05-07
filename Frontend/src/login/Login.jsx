@@ -71,7 +71,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://'https://host-solo-parent-6knb.vercel.app':8081/login", {
+      const response = await fetch("https://host-solo-parent-6knb.vercel.app/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
